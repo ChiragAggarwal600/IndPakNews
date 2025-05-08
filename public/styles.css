@@ -1,0 +1,199 @@
+/* Custom animations */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.7;
+    }
+}
+
+/* Theme colors */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+}
+
+/* Dark mode styles */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #212529;
+    --bs-body-color: #dee2e6;
+}
+
+/* Custom styles */
+.card {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 300ms;
+}
+
+.dark .card {
+    background-color: #1f2937;
+}
+
+.card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    padding: 0.5rem 1rem;
+    background-color: #2563eb;
+    color: white;
+    border-radius: 0.5rem;
+    transition: background-color 200ms;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background-color: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Category badges */
+.category-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.category-military {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.category-diplomatic {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.category-economic {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.category-social {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+}
+
+.dark .category-military {
+    background-color: #7f1d1d;
+    color: #fecaca;
+}
+
+.dark .category-diplomatic {
+    background-color: #1e3a8a;
+    color: #bfdbfe;
+}
+
+.dark .category-economic {
+    background-color: #14532d;
+    color: #bbf7d0;
+}
+
+.dark .category-social {
+    background-color: #581c87;
+    color: #e9d5ff;
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+.dark {
+    transition: colors 200ms;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .news-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .news-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.skeleton {
+    animation: pulse 2s infinite;
+    background: #e9ecef;
+    border-radius: 0.25rem;
+}
+
+.dark .skeleton {
+    background: #343a40;
+}
+
+.chart-container {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+[data-bs-theme="dark"] .chart-container {
+    background: #2b3035;
+}
+
+.news-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 1rem;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+.MuiCard-root {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Navbar customization */
+.navbar-brand {
+    font-weight: 600;
+}
+
+/* Live indicator */
+.live-indicator {
+    animation: pulse 2s infinite;
+}
