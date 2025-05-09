@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  news-notifier:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: news-notifier
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - GNEWS_API_KEY=${GNEWS_API_KEY}
+    volumes:
+      - ./.env:/app/.env
+    restart: unless-stopped

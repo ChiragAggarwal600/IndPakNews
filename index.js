@@ -235,12 +235,12 @@ app.get('/api/news', async (req, res) => {
     console.log('Checking news cache...');
     const now = new Date();
     
-    // Return cached data if it's less than 15 minutes old
-    if (newsCache.data && newsCache.lastFetched && 
-        (now - newsCache.lastFetched) < 15 * 60 * 1000) {
-      console.log('Returning cached news data');
-      return res.json(newsCache.data);
-    }
+    // // Return cached data if it's less than 15 minutes old
+    // if (newsCache.data && newsCache.lastFetched && 
+    //     (now - newsCache.lastFetched) < 15 * 60 * 1000) {
+    //   console.log('Returning cached news data');
+    //   return res.json(newsCache.data);
+    // }
     
     console.log('Fetching fresh news data...');
     
@@ -250,9 +250,29 @@ app.get('/api/news', async (req, res) => {
       return res.status(500).json({ error: 'API key not configured' });
     }
     
-    const url = `https://gnews.io/api/v4/search?q=India%20Pakistan&lang=en&max=40&token=${apiKey}`;
+    // Add timestamp to ensure fresh data
+    const timestamp = new Date().getTime();
+    
+    // Create multiple queries to get diverse news
+    const queries = [
+      'India Pakistan conflict',
+      'India Pakistan relations',
+      'India Pakistan border',
+      'India Pakistan Kashmir',
+      'India Pakistan trade',
+      'India Pakistan cricket',
+      'India Pakistan diplomacy'
+    ];
+    
+    // Randomly select a query to get different news each time
+    const randomQuery = queries[Math.floor(Math.random() * queries.length)];
+    
+    const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(randomQuery)}&lang=en&max=40&token=${apiKey}&t=${timestamp}&sortby=publishedAt`;
+    console.log('Fetching news with query:', randomQuery);
+    
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
     
     if (!data.articles) {
       console.error('No articles in API response:', data);

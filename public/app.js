@@ -69,7 +69,9 @@ function App() {
   const fetchNews = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:3000/api/news');
+      // Add timestamp to prevent caching
+      const timestamp = new Date().getTime();
+      const response = await fetch(`http://localhost:3000/api/news?t=${timestamp}`);
       
       if (!response.ok) {
         const errorData = await response.json();
@@ -715,6 +717,17 @@ function App() {
               <i className="bi bi-broadcast me-1"></i>
               Live Updates
             </span>
+            
+            <button
+              className="btn btn-outline-light me-2"
+              onClick={() => {
+                setLoading(true);
+                fetchNews();
+              }}
+              title="Refresh News"
+            >
+              <i className="bi bi-arrow-clockwise"></i>
+            </button>
             
             <button
               className="btn btn-outline-light"
